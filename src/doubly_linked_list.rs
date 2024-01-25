@@ -6,7 +6,7 @@ use std::{
 pub struct Node<T: Copy> {
     pub value: T,
     pub next: Option<NodePtr<T>>,
-    pub prev: Option<Weak<RefCell<Node<T>>>>,
+    pub prev: Option<Weak<RefCell<Node<T>>>>, // weak reference to avoid reference cycles
 }
 
 impl<T: Copy> Node<T> {
