@@ -36,7 +36,7 @@ impl Tree {
         match &mut self.root {
             None => {
                 self.root = Node::new(value).into();
-            },
+            }
             Some(node) => {
                 // can't self.insert_recursive because self is already mutable until the end of the match
                 Tree::insert_recursive(node, value);
@@ -60,7 +60,7 @@ impl Tree {
                 match node.right {
                     ref mut right @ None => {
                         *right = Node::new(value).into();
-                    },
+                    }
                     Some(ref mut right) => {
                         q.push(right);
                     }
@@ -71,7 +71,7 @@ impl Tree {
                 match left {
                     None => {
                         *left = Node::new(value).into();
-                    },
+                    }
                     Some(left) => {
                         q.push(left);
                     }
@@ -85,7 +85,7 @@ impl Tree {
             match &mut node.right {
                 None => {
                     node.right = Node::new(value).into();
-                },
+                }
                 Some(right) => {
                     Self::insert_recursive(right, value);
                 }
@@ -94,7 +94,7 @@ impl Tree {
             match &mut node.left {
                 None => {
                     node.left = Node::new(value).into();
-                },
+                }
                 Some(left) => {
                     Self::insert_recursive(left, value);
                 }
@@ -120,6 +120,18 @@ mod tests {
         assert_eq!(tree.root.is_some(), true);
         assert_eq!(tree.root.as_ref().unwrap().value, 8);
         assert_eq!(tree.root.as_ref().unwrap().left.as_ref().unwrap().value, 3);
-        assert_eq!(tree.root.as_ref().unwrap().left.as_ref().unwrap().left.as_ref().unwrap().value, 1);
+        assert_eq!(
+            tree.root
+                .as_ref()
+                .unwrap()
+                .left
+                .as_ref()
+                .unwrap()
+                .left
+                .as_ref()
+                .unwrap()
+                .value,
+            1
+        );
     }
 }
